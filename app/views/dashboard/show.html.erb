@@ -6,6 +6,38 @@
       <%= button_to 'Log Out', logout_path, method: :post, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger btn-lg' %>
     </div>
   </div>
+
+  <div class="row mt-5">
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Manage Tenants</h5>
+          <p class="card-text">View and manage all tenants.</p>
+          <%= link_to 'View Tenants', tenants_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Manage Currencies</h5>
+          <p class="card-text">View and manage currency types.</p>
+          <%= link_to 'View Currencies', currencies_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">Manage Expense Categories</h5>
+          <p class="card-text">View and manage expense categories.</p>
+          <%= link_to 'View Expense Categories', expense_categories_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <style>
