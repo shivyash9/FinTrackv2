@@ -1,0 +1,14 @@
+<p class="text-success"><%= notice %></p>
+
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Currency Code:</strong> <%= @currency.currency_code %></h5>
+    <h5 class="card-title"><strong>Symbol:</strong> <%= @currency.symbol %></h5>
+  </div>
+</div>
+
+<div class="btn-group" role="group">
+  <%= link_to "Edit this Currency", edit_currency_path(@currency), class: "btn btn-primary" %>
+  <%= link_to "Back to Currencies", currencies_path, class: "btn btn-secondary" %>
+  <%= button_to "Destroy this Currency", @currency, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure you want to delete this currency?" } %>
+</div>

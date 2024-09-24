@@ -1,0 +1,11 @@
+<% content_for :title, "New Currency" %>
+
+<div class="container mt-4">
+  <h1 class="mb-4">New Currency</h1>
+
+  <%= render "form", currency: @currency %>
+
+  <div class="mt-4">
+    <%= link_to "Back to Currencies", currencies_path, class: "btn btn-secondary" %>
+  </div>
+</div>

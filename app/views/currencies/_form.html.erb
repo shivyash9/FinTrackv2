@@ -1,0 +1,27 @@
+<%= form_with(model: currency) do |form| %>
+  <% if currency.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(currency.errors.count, "error") %> prohibited this currency from being saved:</h2>
+
+      <ul>
+        <% currency.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :currency_code, style: "display: block" %>
+    <%= form.text_field :currency_code %>
+  </div>
+
+  <div>
+    <%= form.label :symbol, style: "display: block" %>
+    <%= form.text_field :symbol %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

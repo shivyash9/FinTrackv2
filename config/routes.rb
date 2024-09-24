@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#show'
 
   resources :expense_categories
+  resources :currencies
 end
