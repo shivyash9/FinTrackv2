@@ -1,4 +1,24 @@
-<h1>Welcome to Dashboard</h1>
-<p>You're successfully logged in!</p>
+<div class="container mt-5">
+  <div class="card text-center shadow-lg">
+    <div class="card-body">
+      <h1 class="display-4 mb-3">Welcome to Your Dashboard</h1>
+      <p class="lead text-muted mb-4">You're successfully logged in!</p>
+      <%= button_to 'Log Out', logout_path, method: :post, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger btn-lg' %>
+    </div>
+  </div>
+</div>
 
-<%= button_to 'Log Out', logout_path, method: :post, data: { confirm: 'Are you sure you want to log out?' }, class: 'logout-button' %>
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+  .card {
+    border-radius: 1rem;
+  }
+  .logout-button {
+    transition: background-color 0.3s ease;
+  }
+  .logout-button:hover {
+    background-color: #c82333; /* Darker red for hover effect */
+  }
+</style>

@@ -40,6 +40,8 @@ gem "bootsnap", require: false
 gem 'annotate'
 gem 'bcrypt', '~> 3.1.7'
 gem 'byebug'
+gem 'sassc-rails'
+gem 'bootstrap', '~> 5.0'
 
 
 group :development, :test do
