@@ -10,6 +10,7 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Category Code</th>
+        <th scope="col">Currency Symbol</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -18,6 +19,7 @@
         <tr>
           <th scope="row"><%= index + 1 %></th>
           <td><%= currency.currency_code %></td>
+          <td><%= currency.symbol %></td>
           <td>
             <%= link_to "Show", currency, class: "btn btn-primary btn-sm" %>
           </td>

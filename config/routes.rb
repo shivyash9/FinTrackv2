@@ -25,4 +25,5 @@ Rails.application.routes.draw do
 
   resources :expense_categories
   resources :currencies
+  resources :tenants
 end

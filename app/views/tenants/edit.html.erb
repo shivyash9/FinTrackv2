@@ -1,0 +1,12 @@
+<% content_for :title, "Editing Tenant" %>
+
+<div class="container mt-4">
+  <h1 class="display-4 text-center">Editing Tenant</h1>
+
+  <%= render "form", tenant: @tenant %>
+
+  <div class="mt-4 text-center">
+    <%= link_to "Show this Tenant", @tenant, class: "btn btn-primary" %> |
+    <%= link_to "Back to Tenants", tenants_path, class: "btn btn-secondary" %>
+  </div>
+</div>
