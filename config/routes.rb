@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'dashboard', to: 'dashboard#show'
+
+  resources :expense_categories
 end

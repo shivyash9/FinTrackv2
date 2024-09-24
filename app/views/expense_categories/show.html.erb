@@ -1,0 +1,12 @@
+<p class="alert alert-success" style="color: green;"><%= notice %></p>
+
+<div class="container mt-4">
+  <%= render @expense_category %>
+
+  <div class="mt-3">
+    <%= link_to "Edit this Expense Category", edit_expense_category_path(@expense_category), class: "btn btn-warning" %>
+    <%= link_to "Back to Expense Categories", expense_categories_path, class: "btn btn-secondary ml-2" %>
+
+    <%= button_to "Destroy this Expense Category", @expense_category, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger ml-2" %>
+  </div>
+</div>

@@ -9,6 +9,7 @@ end
 #  database_name     :string(255)      not null
 #  database_password :string(255)      not null
 #  database_username :string(255)      not null
+#  domain_name       :string(255)      not null
 #  name              :string(255)      not null
 #  plan              :string(255)
 #  status            :boolean          default(TRUE)

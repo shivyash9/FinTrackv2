@@ -1,0 +1,12 @@
+<% content_for :title, "Editing Expense Category" %>
+
+<div class="container mt-4">
+  <h1 class="display-4 text-center">Editing Expense Category</h1>
+
+  <%= render "form", expense_category: @expense_category %>
+
+  <div class="mt-4 text-center">
+    <%= link_to "Show this Expense Category", @expense_category, class: "btn btn-primary" %> |
+    <%= link_to "Back to Expense Categories", expense_categories_path, class: "btn btn-secondary" %>
+  </div>
+</div>

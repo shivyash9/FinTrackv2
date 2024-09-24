@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_24_072908) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_24_112913) do
   create_table "currencies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "currency_code", null: false
     t.string "symbol", null: false
@@ -49,6 +49,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_24_072908) do
     t.string "plan"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "domain_name", null: false
   end
 
   create_table "user_budgets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
