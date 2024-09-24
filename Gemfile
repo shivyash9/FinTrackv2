@@ -38,6 +38,8 @@ gem "bootsnap", require: false
 ## My custom defined gems
 
 gem 'annotate'
+gem 'bcrypt', '~> 3.1.7'
+gem 'byebug'
 
 
 group :development, :test do
