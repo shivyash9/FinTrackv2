@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_24_071838) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_24_072908) do
   create_table "currencies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "currency_code", null: false
     t.string "symbol", null: false
@@ -73,6 +73,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_24_071838) do
     t.boolean "is_blocked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "default_currency_id"
+    t.index ["default_currency_id"], name: "index_users_on_default_currency_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end
@@ -83,5 +85,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_24_071838) do
   add_foreign_key "user_budgets", "currencies"
   add_foreign_key "user_budgets", "expense_categories"
   add_foreign_key "user_budgets", "users"
+  add_foreign_key "users", "currencies", column: "default_currency_id"
   add_foreign_key "users", "tenants"
 end
