@@ -1,3 +1,6 @@
+class User < ApplicationRecord
+end
+
 # == Schema Information
 #
 # Table name: users
@@ -20,5 +23,3 @@
 #
 #  fk_rails_...  (tenant_id => tenants.id)
 #
-class User < ApplicationRecord
-end
