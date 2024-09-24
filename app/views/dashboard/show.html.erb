@@ -1,2 +1,4 @@
 <h1>Welcome to Dashboard</h1>
 <p>You're successfully logged in!</p>
+
+<%= button_to 'Log Out', logout_path, method: :post, data: { confirm: 'Are you sure you want to log out?' }, class: 'logout-button' %>

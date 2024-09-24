@@ -8,4 +8,16 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
+
+  def redirect_if_logged_in
+    if logged_in?
+      redirect_to dashboard_path, notice: 'You are already logged in.'
+    end
+  end
+
+  def require_login
+    unless logged_in?
+      redirect_to new_session_path, alert: 'You must be logged in to access this section.'
+    end
+  end
 end
