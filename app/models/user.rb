@@ -12,6 +12,12 @@ class User < ApplicationRecord
   def admin?
     is_admin
   end
+
+  def super_admin?
+    ####### Just a workaround for easy working
+    is_admin && email.include?('pramata.com')
+    ####### Just a workaround for easy working
+  end
 end
 
 # == Schema Information

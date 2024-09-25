@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_super_admin_user
+    unless logged_in? && current_user.super_admin?
+      redirect_to new_session_path, alert: 'You must be logged in and a valid super admin to access this section.'
+    end
+  end
+
   def redirect_if_logged_in
     if logged_in?
       redirect_to dashboard_path, notice: 'You are already logged in.'
