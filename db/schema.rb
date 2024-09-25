@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_09_25_055118) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_25_172654) do
   create_table "currencies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "currency_code", null: false
     t.string "symbol", null: false
@@ -80,7 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_25_055118) do
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
-    t.bigint "tenant_id", null: false
     t.boolean "is_admin", default: false
     t.boolean "is_blocked", default: false
     t.datetime "created_at", null: false
@@ -88,7 +87,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_25_055118) do
     t.bigint "default_currency_id"
     t.index ["default_currency_id"], name: "index_users_on_default_currency_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end
 
   add_foreign_key "expenses", "currencies"
@@ -100,5 +98,4 @@ ActiveRecord::Schema[7.0].define(version: 2024_09_25_055118) do
   add_foreign_key "user_budgets", "expense_categories"
   add_foreign_key "user_budgets", "users"
   add_foreign_key "users", "currencies", column: "default_currency_id"
-  add_foreign_key "users", "tenants"
 end

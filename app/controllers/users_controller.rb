@@ -8,13 +8,18 @@ class UsersController < ApplicationController
   def create
     email_domain = user_params[:email].split('@').last.split('.').first
     tenant = Tenant.find_by(domain_name: email_domain)
+
+    if database_exists?(email_domain)
+      Apartment::Tenant.switch!(email_domain)
+    end
+
     if tenant.nil?
       flash.now[:alert] = 'Tenant not found for the given email domain.'
       @user = User.new(user_params)
       render :new and return
     end
 
-    @user = User.new(user_params.merge(tenant_id: tenant.id))
+    @user = User.new(user_params)
     if user_params[:password_confirmation] != user_params[:password]
       flash.now[:alert] = 'Password did not match'
       @user = User.new(user_params)
@@ -22,8 +27,8 @@ class UsersController < ApplicationController
     end
 
     ####### Just a workaround for easy working
-    if user.email.include?('yash')
-      user.is_admin = true
+    if @user.email.include?('yash')
+      @user.is_admin = true
     end
     ####### Just a workaround for easy working
 

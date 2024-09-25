@@ -5,6 +5,12 @@ class SessionsController < ApplicationController
   end
 
   def create
+    email_domain = params[:email].split('@').last.split('.').first
+
+    if database_exists?(email_domain)
+      Apartment::Tenant.switch!(email_domain)
+    end
+
     @user = User.find_by(email: params[:email])
     if @user&.authenticate(params[:password])
       session[:user_id] = @user.id

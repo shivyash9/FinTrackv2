@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
     @current_tenant ||= Tenant.find_by(domain_name: domain)
   end
 
+  def database_exists?(database_name)
+    result = ActiveRecord::Base.connection.execute("SHOW DATABASES LIKE '#{database_name}'")
+    result.any?
+  end
 
   private
 

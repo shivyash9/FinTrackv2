@@ -5,7 +5,7 @@ class Tenant < ApplicationRecord
   validates :domain_name, presence: true
   validates :name, presence: true
 
-  has_many :users, dependent: :destroy
+  # has_many :users, dependent: :destroy
 end
 
 # == Schema Information
