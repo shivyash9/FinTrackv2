@@ -1,4 +1,4 @@
-class CreateExpensesUserBudgets < ActiveRecord::Migration[7.2]
+class CreateExpensesUserBudgets < ActiveRecord::Migration[7.0]
   def change
     create_table :expenses_user_budgets do |t|
       t.references :expense, null: false, foreign_key: true

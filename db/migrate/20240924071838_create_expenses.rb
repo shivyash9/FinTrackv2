@@ -1,4 +1,4 @@
-class CreateExpenses < ActiveRecord::Migration[7.2]
+class CreateExpenses < ActiveRecord::Migration[7.0]
   def change
     create_table :expenses do |t|
       t.decimal :amount, precision: 10, scale: 2, null: false

@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    email_domain = user_params[:email].split('@').last
-
+    email_domain = user_params[:email].split('@').last.split('.').first
     tenant = Tenant.find_by(domain_name: email_domain)
     if tenant.nil?
       flash.now[:alert] = 'Tenant not found for the given email domain.'

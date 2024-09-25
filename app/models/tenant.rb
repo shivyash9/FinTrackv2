@@ -10,7 +10,7 @@ end
 
 # == Schema Information
 #
-# Table name: tenants
+# Table name: fin_track_development.tenants
 #
 #  id                :bigint           not null, primary key
 #  database_name     :string(255)      not null
