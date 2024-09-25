@@ -1,0 +1,10 @@
+<h1>Expense Details</h1>
+
+<p><strong>Expense Category:</strong> <%= @expense.expense_category.name %></p>
+<p><strong>Amount:</strong> <%= @expense.amount %></p>
+<p><strong>Currency:</strong> <%= @expense.currency.symbol %></p>
+<p><strong>Description:</strong> <%= @expense.description %></p>
+<p><strong>Expense Date:</strong> <%= @expense.expense_date %></p>
+
+<%= link_to 'Edit', edit_expense_path(@expense), class: "btn btn-primary" %>
+<%= link_to 'Back', expenses_path, class: "btn btn-secondary" %>

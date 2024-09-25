@@ -1,0 +1,31 @@
+<h1>Your Budgets</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Expense Category</th>
+      <th>Amount</th>
+      <th>Currency</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_budgets.each do |budget| %>
+      <tr>
+        <td><%= budget.expense_category.name %></td>
+        <td><%= budget.amount %></td>
+        <td><%= budget.currency.symbol %></td>
+        <td><%= budget.start_date %></td>
+        <td><%= budget.end_date %></td>
+        <td>
+          <%= link_to 'Edit', edit_user_budget_path(budget), class: "btn btn-primary" %>
+          <%= link_to 'Show', user_budget_path(budget), method: :get, class: "btn btn-secondary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Create New Budget', new_user_budget_path, class: "btn btn-success" %>

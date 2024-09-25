@@ -1,0 +1,30 @@
+<h1>Budget Details</h1>
+
+<p>
+  <strong>Expense Category:</strong>
+  <%= @user_budget.expense_category.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @user_budget.amount %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @user_budget.currency.symbol %>
+</p>
+
+<p>
+  <strong>Start Date:</strong>
+  <%= @user_budget.start_date %>
+</p>
+
+<p>
+  <strong>End Date:</strong>
+  <%= @user_budget.end_date %>
+</p>
+
+<%= link_to 'Edit', edit_user_budget_path(@user_budget), class: "btn btn-primary" %>
+<%= link_to 'Back', user_budgets_path, class: "btn btn-secondary" %>
+<%= button_to "Destroy this budget", @user_budget, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger ml-2" %>

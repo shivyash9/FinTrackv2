@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_24_112913) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_25_055118) do
   create_table "currencies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "currency_code", null: false
     t.string "symbol", null: false
@@ -35,9 +35,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_24_112913) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "expense_date", null: false
     t.index ["currency_id"], name: "index_expenses_on_currency_id"
     t.index ["expense_category_id"], name: "index_expenses_on_expense_category_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
+  create_table "expenses_user_budgets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "expense_id", null: false
+    t.bigint "user_budget_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_id", "user_budget_id"], name: "index_expenses_user_budgets_on_expense_and_budget", unique: true
+    t.index ["expense_id"], name: "index_expenses_user_budgets_on_expense_id"
+    t.index ["user_budget_id"], name: "index_expenses_user_budgets_on_user_budget_id"
   end
 
   create_table "tenants", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -83,6 +94,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_24_112913) do
   add_foreign_key "expenses", "currencies"
   add_foreign_key "expenses", "expense_categories"
   add_foreign_key "expenses", "users"
+  add_foreign_key "expenses_user_budgets", "expenses"
+  add_foreign_key "expenses_user_budgets", "user_budgets"
   add_foreign_key "user_budgets", "currencies"
   add_foreign_key "user_budgets", "expense_categories"
   add_foreign_key "user_budgets", "users"

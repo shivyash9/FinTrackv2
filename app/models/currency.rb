@@ -1,4 +1,5 @@
 class Currency < ApplicationRecord
+  has_many :user_budgets
 end
 
 # == Schema Information

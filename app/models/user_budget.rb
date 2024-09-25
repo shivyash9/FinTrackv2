@@ -1,4 +1,17 @@
 class UserBudget < ApplicationRecord
+  belongs_to :expense_category
+  belongs_to :currency
+  belongs_to :user
+
+  validates :start_date, :end_date, presence: true
+  validate :end_date_after_start_date
+  has_and_belongs_to_many :expenses, join_table: :expenses_user_budgets
+
+  def end_date_after_start_date
+    if end_date.present? && start_date.present? && end_date < start_date
+      errors.add(:end_date, "must be greater than or equal to the start date")
+    end
+  end
 end
 
 # == Schema Information

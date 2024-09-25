@@ -8,6 +8,28 @@
   </div>
 
   <div class="row mt-5">
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">My Budgets</h5>
+          <p class="card-text">View and manage all budgets.</p>
+          <%= link_to 'View Budgets', user_budgets_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title">My Expenses</h5>
+          <p class="card-text">View and manage all expenses.</p>
+          <%= link_to 'View Expenses', expenses_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+
     <div class="col-md-4 mb-4">
       <div class="card shadow-sm">
         <div class="card-body text-center">
@@ -38,6 +60,12 @@
       </div>
     </div>
   </div>
+
+
+  <div class = "analytics">
+
+  </div>
+
 </div>
 
 <style>

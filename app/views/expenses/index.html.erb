@@ -1,0 +1,31 @@
+<h1>Your Expenses</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Description</th>
+      <th>Currency</th>
+      <th>Expense Category</th>
+      <th>Expense Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.amount %></td>
+        <td><%= expense.description %></td>
+        <td><%= expense.currency.symbol %></td>
+        <td><%= expense.expense_category.name %></td>
+        <td><%= expense.expense_date %></td>
+        <td>
+          <%= link_to 'Show', expense_path(expense), class: "btn btn-info" %>
+          <%= link_to 'Edit', edit_expense_path(expense), class: "btn btn-primary" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Create New Expense', new_expense_path, class: "btn btn-success" %>

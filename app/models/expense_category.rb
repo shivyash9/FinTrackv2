@@ -1,4 +1,5 @@
 class ExpenseCategory < ApplicationRecord
+  has_many :user_budgets, dependent: :destroy
 end
 
 # == Schema Information
