@@ -1,4 +1,10 @@
 class Tenant < ApplicationRecord
+  validates :database_name, presence: true, uniqueness: true
+  validates :database_password, presence: true
+  validates :database_username, presence: true
+  validates :domain_name, presence: true
+  validates :name, presence: true
+
   has_many :users, dependent: :destroy
 end
 

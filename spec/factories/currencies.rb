@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :currency do
-    currency_code { "USD" }
-    symbol { "$" }
+    currency_code { "EUR" }
+    symbol { "Eur" }
   end
 end
