@@ -1,4 +1,5 @@
 class Tenant < ApplicationRecord
+  has_many :users, dependent: :destroy
 end
 
 # == Schema Information

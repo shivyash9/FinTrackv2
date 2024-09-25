@@ -1,5 +1,6 @@
 class Currency < ApplicationRecord
-  has_many :user_budgets
+  has_many :user_budgets, dependent: :destroy
+  has_many :users, dependent: :nullify
 end
 
 # == Schema Information

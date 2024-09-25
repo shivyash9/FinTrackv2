@@ -6,6 +6,9 @@ class User < ApplicationRecord
   has_many :user_budgets, dependent: :destroy
   has_many :expenses, dependent: :destroy
 
+  belongs_to :tenant
+  belongs_to :default_currency, class_name: 'Currency'
+
   def admin?
     is_admin
   end
