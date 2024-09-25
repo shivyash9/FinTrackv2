@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :expenses, dependent: :destroy
 
   belongs_to :tenant
-  belongs_to :default_currency, class_name: 'Currency'
+  # belongs_to :default_currency, class_name: 'Currency'
 
   def admin?
     is_admin
@@ -16,7 +16,7 @@ end
 
 # == Schema Information
 #
-# Table name: users
+# Table name: fin_track_development.users
 #
 #  id                  :bigint           not null, primary key
 #  email               :string(255)      not null

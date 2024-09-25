@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :logged_in?
+  helper_method :current_tenant, :current_user, :logged_in?
+  before_action :set_current_tenant
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
@@ -25,5 +26,20 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       redirect_to new_session_path, alert: 'You must be logged in to access this section.'
     end
+  end
+
+  def current_tenant
+    return unless logged_in?
+    domain = current_user.email.split('@').last.split('.').first
+    @current_tenant ||= Tenant.find_by(domain_name: domain)
+  end
+
+
+  private
+
+  def set_current_tenant
+    return unless logged_in? && current_tenant
+
+    Apartment::Tenant.switch!(current_tenant.domain_name)
   end
 end

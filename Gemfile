@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1"
+gem 'rails', '7.0.8.1'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use mysql as the database for Active Record
@@ -35,7 +36,7 @@ gem "bootsnap", require: false
 
 
 ## My custom defined gems
-
+gem 'ros-apartment', require: 'apartment'
 gem 'annotate'
 gem 'bcrypt', '~> 3.1.7'
 gem 'byebug'
