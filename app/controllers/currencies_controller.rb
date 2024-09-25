@@ -1,5 +1,6 @@
 class CurrenciesController < ApplicationController
   before_action :set_currency, only: %i[ show edit update destroy ]
+  before_action :require_admin_user
 
   # GET /currencies or /currencies.json
   def index

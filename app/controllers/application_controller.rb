@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def require_admin_user
+    unless logged_in? && current_user.admin?
+      redirect_to new_session_path, alert: 'You must be logged in and a valid admin to access this section.'
+    end
+  end
+
   def redirect_if_logged_in
     if logged_in?
       redirect_to dashboard_path, notice: 'You are already logged in.'

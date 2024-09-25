@@ -2,10 +2,13 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6 }
 
-  has_many :user_budgets
-  has_many :expenses
+  has_many :user_budgets, dependent: :destroy
+  has_many :expenses, dependent: :destroy
+
+  def admin?
+    is_admin
+  end
 end
 
 # == Schema Information

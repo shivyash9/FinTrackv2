@@ -1,5 +1,6 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: %i[ show edit update destroy ]
+  before_action :require_admin_user
 
   # GET /tenants or /tenants.json
   def index

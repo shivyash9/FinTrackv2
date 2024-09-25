@@ -1,5 +1,6 @@
 class ExpenseCategoriesController < ApplicationController
   before_action :set_expense_category, only: %i[ show edit update destroy ]
+  before_action :require_admin_user
 
   # GET /expense_categories or /expense_categories.json
   def index
