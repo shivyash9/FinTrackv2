@@ -109,7 +109,7 @@ end
 Rails.application.config.middleware.use Apartment::Elevators::Generic, lambda { |request|
   user_email = request.session[:current_user_email]
   if user_email
-    domain_name = current_user.email.split('@').last.split('.').first
+    domain_name = user_email.split('@').last.split('.').first
     domain_name
   else
     nil
