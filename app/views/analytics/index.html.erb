@@ -1,0 +1,175 @@
+<h1>Expense Analytics</h1>
+
+<!-- Pie Chart for Category Spending -->
+<canvas id="expenseChart" width="300" height="200"></canvas>
+
+<!-- Line Chart for Month-Wise Expenses -->
+<h2>Monthly Expenses</h2>
+<canvas id="monthlyExpenseChart" width="300" height="200"></canvas>
+
+<!-- Bar Chart for Daily Expenses -->
+
+<h2>Daily Expenses</h2>
+<canvas id="dailyExpenseChart" width="300" height="200"></canvas>
+
+<h2>Budget Analytics</h2>
+<% @budget_expense_data.group_by { |data| data[:category] }.each do |category, budgets| %>
+  <h3 class="mt-4 mb-3 text-primary"><%= category %> Category Budgets</h3>
+
+  <div class="table-responsive">
+  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+    <thead style="background-color: #f8f9fa;">
+      <tr>
+        <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">Budget Amount</th>
+        <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">Total Expenses</th>
+        <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">Start Date</th>
+        <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">End Date</th>
+        <th style="border: 1px solid #dee2e6; padding: 10px; text-align: left;">Graph</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% budgets.each do |data| %>
+        <tr style="background-color: <%= data[:budget_amount] >= data[:total_expenses] ? 'lightgreen' : 'red' %>;">
+          <td style="border: 1px solid #dee2e6; padding: 10px;"><%= number_to_currency(data[:budget_amount]) %></td>
+          <td style="border: 1px solid #dee2e6; padding: 10px;"><%= number_to_currency(data[:total_expenses]) %></td>
+          <td style="border: 1px solid #dee2e6; padding: 10px;"><%= data[:start_date].strftime("%Y-%m-%d") %></td>
+          <td style="border: 1px solid #dee2e6; padding: 10px;"><%= data[:end_date].strftime("%Y-%m-%d") %></td>
+          <td style="border: 1px solid #dee2e6; padding: 10px; text-align: center;">
+            <canvas id="budgetGraph_<%= data[:id] %>" width="100" height="40" style="max-width: 100%;"></canvas>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+  <% budgets.each do |data| %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const budgetCtx = document.getElementById('budgetGraph_<%= data[:id] %>').getContext('2d');
+        const budgetData = {
+          labels: ['Budget', 'Expenses'],
+          datasets: [{
+            label: 'Amount',
+            data: [<%= data[:budget_amount] %>, <%= data[:total_expenses] %>],
+            backgroundColor: ['#36A2EB', '#FF6384'],
+            borderWidth: 1
+          }]
+        };
+        const budgetConfig = {
+          type: 'bar',
+          data: budgetData,
+          options: {
+            responsive: true,
+            indexAxis: 'y',
+            scales: {
+              x: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Amount'
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Categories'
+                }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: { enabled: false }
+            }
+          }
+        };
+        new Chart(budgetCtx, budgetConfig);
+      });
+    </script>
+  <% end %>
+<% end %>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+  // Pie Chart for Category Spending
+  const ctxExpense = document.getElementById('expenseChart').getContext('2d');
+  const dataExpense = {
+    labels: <%= @graph_data.map { |d| d[:category] }.to_json.html_safe %>,
+    datasets: [{
+      label: 'Total Expenses by Category',
+      data: <%= @graph_data.map { |d| d[:total] }.to_json.html_safe %>,
+      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+      borderWidth: 1
+    }]
+  };
+  const configExpense = {
+    type: 'pie',
+    data: dataExpense,
+    options: {
+      responsive: false,
+      plugins: {
+        legend: { position: 'top' },
+        title: { display: true, text: 'Expense Breakdown by Category' }
+      }
+    }
+  };
+  new Chart(ctxExpense, configExpense);
+
+  // Line Chart for Monthly Expenses
+  const ctxMonthly = document.getElementById('monthlyExpenseChart').getContext('2d');
+  const dataMonthly = {
+    labels: <%= @monthly_expenses_graph_data.map { |d| d[:month] }.to_json.html_safe %>,
+    datasets: [{
+      label: 'Monthly Expenses',
+      data: <%= @monthly_expenses_graph_data.map { |d| d[:total] }.to_json.html_safe %>,
+      backgroundColor: '#36A2EB',
+      borderColor: '#36A2EB',
+      borderWidth: 1
+    }]
+  };
+  const configMonthly = {
+    type: 'line',
+    data: dataMonthly,
+    options: {
+      responsive: false,
+      plugins: {
+        legend: { position: 'top' },
+        title: { display: true, text: 'Expenses per Month' }
+      }
+    }
+  };
+  new Chart(ctxMonthly, configMonthly);
+
+  // Bar Chart for Daily Expenses
+  const ctxDaily = document.getElementById('dailyExpenseChart').getContext('2d');
+  const dataDaily = {
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    datasets: [{
+      label: 'Daily Expenses',
+      data: <%= @daily_expenses_graph_data.map { |d| d[:total] }.to_json.html_safe %>,
+      backgroundColor: '#FFCE56',
+      borderColor: '#FFCE56',
+      borderWidth: 1
+    }]
+  };
+  const configDaily = {
+    type: 'bar',
+    data: dataDaily,
+    options: {
+      responsive: false,
+      plugins: {
+        legend: { position: 'top' },
+        title: { display: true, text: 'Expenses by Day of the Week' }
+      }
+    }
+  };
+  new Chart(ctxDaily, configDaily);
+</script>
+
+<style>
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+</style>

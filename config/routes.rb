@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   post 'logout', to: 'sessions#destroy', as: 'logout'
 
   get 'dashboard', to: 'dashboard#show'
+  get 'analytics', to: 'analytics#index'
 
   resources :expense_categories
   resources :currencies

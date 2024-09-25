@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }
 
   has_many :user_budgets
+  has_many :expenses
 end
 
 # == Schema Information

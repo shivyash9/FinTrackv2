@@ -3,7 +3,10 @@
     <div class="card-body">
       <h1 class="display-4 mb-3">Welcome to Your Dashboard</h1>
       <p class="lead text-muted mb-4">You're successfully logged in!</p>
+      <div class="display-4">
+      <%= button_to 'Show me my analytics', analytics_path, method: :get,  class: 'btn btn-primary btn-lg' %>
       <%= button_to 'Log Out', logout_path, method: :post, data: { confirm: 'Are you sure you want to log out?' }, class: 'btn btn-danger btn-lg' %>
+      </div>
     </div>
   </div>
 
