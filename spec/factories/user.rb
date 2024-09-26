@@ -5,7 +5,5 @@ FactoryBot.define do
     password_confirmation { "password" }
     is_admin { false }
     is_blocked { false }
-    association :tenant, factory: :tenant
-    association :default_currency, factory: :currency
   end
 end

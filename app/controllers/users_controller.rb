@@ -12,7 +12,6 @@ class UsersController < ApplicationController
     if database_exists?(email_domain)
       Apartment::Tenant.switch!(email_domain)
     end
-
     if tenant.nil?
       flash.now[:alert] = 'Tenant not found for the given email domain.'
       @user = User.new(user_params)

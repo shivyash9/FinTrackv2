@@ -4,7 +4,6 @@
   <%= render @tenant %>
 
   <div class="mt-3">
-    <%= link_to "Edit this Tenant", edit_tenant_path(@tenant), class: "btn btn-warning" %>
     <%= link_to "Back to Tenants", tenants_path, class: "btn btn-secondary ml-2" %>
 
     <%= button_to "Destroy this Tenant", @tenant, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger ml-2" %>
