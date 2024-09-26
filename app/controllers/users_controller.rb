@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+      session[:current_user_email] = @user.email
       redirect_to dashboard_path, notice: 'Signup successful!'
     else
       render :new
