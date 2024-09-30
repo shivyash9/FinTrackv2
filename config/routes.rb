@@ -30,4 +30,12 @@ Rails.application.routes.draw do
   resources :user_budgets
   resources :expenses
 
+  namespace :api do
+    resources :currencies, only: [:index, :show, :create, :update, :destroy]
+    resources :expense_categories, only: [:index, :show, :create, :update, :destroy]
+
+    post '/login', to: 'sessions#create', as: 'login'
+    delete '/logout', to: 'sessions#destroy', as: 'logout'
+    post '/signup', to: 'users#create', as: 'signup'
+  end
 end

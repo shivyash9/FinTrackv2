@@ -43,6 +43,9 @@ gem 'byebug'
 gem 'sassc-rails'
 gem 'bootstrap', '~> 5.0'
 gem 'apartment'
+gem 'apipie-rails', '~> 0.6.0'
+gem 'jwt'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

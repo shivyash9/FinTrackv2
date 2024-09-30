@@ -1,9 +1,11 @@
 class ApplicationController < ActionController::Base
   helper_method :current_tenant, :current_user, :logged_in?
   before_action :set_current_tenant
+  before_action :authenticate_request
+  protect_from_forgery with: :null_session
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by(id: @decoded_token['user_id']) if @decoded_token
   end
 
   def logged_in?
@@ -51,5 +53,18 @@ class ApplicationController < ActionController::Base
     return unless logged_in? && current_tenant
 
     Apartment::Tenant.switch!(current_tenant.domain_name)
+  end
+
+  def authenticate_request
+    token = request.headers['Authorization']&.split(' ')&.last
+    if token.present?
+      begin
+        @decoded_token = JWT.decode(token, Rails.application.secrets.secret_key_base).first
+      rescue JWT::DecodeError
+        # render json: { error: 'Invalid token' }, status: :unauthorized
+      end
+    else
+      # render json: { error: 'Token not provided' }, status: :unauthorized
+    end
   end
 end
