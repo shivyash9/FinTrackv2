@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
-
   root "sessions#new"
 
   get 'signup', to: 'users#new', as: 'new_user'
@@ -34,8 +32,14 @@ Rails.application.routes.draw do
     resources :currencies, only: [:index, :show, :create, :update, :destroy]
     resources :expense_categories, only: [:index, :show, :create, :update, :destroy]
 
+    resources :tenants, only: [:index, :show, :create, :update, :destroy]
+    resources :user_budgets, only: [:index, :show, :create, :update, :destroy]
+    resources :expenses, only: [:index, :show, :create, :update, :destroy]
+
     post '/login', to: 'sessions#create', as: 'login'
     delete '/logout', to: 'sessions#destroy', as: 'logout'
     post '/signup', to: 'users#create', as: 'signup'
+
+    get '/analytics', to: 'analytics#index'
   end
 end
