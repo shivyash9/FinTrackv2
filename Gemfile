@@ -43,7 +43,7 @@ gem 'byebug'
 gem 'sassc-rails'
 gem 'bootstrap', '~> 5.0'
 gem 'apartment'
-gem 'apipie-rails', '~> 0.6.0'
+gem 'apipie-rails', '~> 1.4.2'
 gem 'jwt'
 gem 'rack-cors', require: 'rack/cors'
 
